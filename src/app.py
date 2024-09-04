@@ -63,13 +63,13 @@ async def start():
         ]).send()
 
     Settings.llm = AzureAICompletionsModel(
-        endpoint=os.getenv("AZURE_AI_COHERE_CMDR_ENDPOINT_URL"),
-        credential=os.getenv("AZURE_AI_COHERE_CMDR_ENDPOINT_KEY"),
+        endpoint=os.getenv("AZURE_AI_PHI3_MINI_ENDPOINT_URL"),
+        credential=os.getenv("AZURE_AI_PHI3_MINI_ENDPOINT_KEY"),
         temperature=0.1, max_tokens=1024, streaming=True
     )
     Settings.embed_model = AzureAIEmbeddingsModel(
-        endpoint=os.getenv("AZURE_AI_COHERE_EMBED_ENDPOINT_URL"),
-        credential=os.getenv("AZURE_AI_COHERE_EMBED_ENDPOINT_KEY"),
+        endpoint=os.getenv("AZURE_AI_OPENAI_ENDPOINT_URL"),
+        credential=os.getenv("AZURE_AI_OPENAI_ENDPOINT_KEY"),
     )
     Settings.callback_manager = CallbackManager([cl.LlamaIndexCallbackHandler()])
     Settings.context_window = 4096
