@@ -6,12 +6,10 @@ In this repository, you will learn how you can use models deployed in Azure AI s
 
 We are using infrastructure as code to deploy the required models. The following script deploys different models using Serverless API endpoints. 
 
-* Cohere Embed V3 - Multilingual
-* Cohere Command R+
 * Mistral-Large
 * Mistral-Small
 * Phi-3-Mini 128K
-* OpenAI GPT-4
+* OpenAI GPT-3 text embedding
 
 Notice that serverless API endpoints are currently supported on `eastus2` and `swidencentral`.
 
