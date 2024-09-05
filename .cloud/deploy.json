@@ -6,6 +6,14 @@
             "type": "string",
             "defaultValue": "[resourceGroup().location]"
         },
+        "opeaiName": {
+            "type": "String",
+            "defaultValue": "openai"
+        },
+        "openaiEmbedId": {
+            "type": "string",
+            "defaultValue": "azureml://registries/azure-openai/models/text-embedding-ada-002"
+        },
         "hubName": {
             "type": "string",
             "defaultValue": "hub-azurei-x-arize-dev"
@@ -38,7 +46,7 @@
             "properties": {
                 "mode": "Incremental",
                 "templateLink": {
-                    "uri": "https://raw.githubusercontent.com/santiagxf/azureai-x-arize/main/.cloud/templates/project-hub-template.json"
+                    "relativePath": "templates/project-hub-template.json"
                 },
                 "parameters": {
                     "hubName": {
@@ -65,7 +73,7 @@
             "properties": {
                 "mode": "Incremental",
                 "templateLink": {
-                    "uri": "https://raw.githubusercontent.com/santiagxf/azureai-x-arize/main/.cloud/templates/serverless-endpoint-template.json"
+                    "relativePath": "templates/serverless-endpoint-template.json"
                 },
                 "parameters": {
                     "projectName": {
@@ -79,6 +87,26 @@
                     },
                     "modelId": {
                         "value": "[parameters('modelIds')[copyIndex()]]"
+                    }
+                }
+            }
+        },
+        {
+            "type": "Microsoft.Resources/deployments",
+            "name": "deployment-openai",
+            "resourceGroup": "[variables('resourceGroupName')]",
+            "apiVersion": "2024-03-01",
+            "properties": {
+                "mode": "Incremental",
+                "templateLink": {
+                    "relativePath": "templates/openai-template.json"
+                },
+                "parameters": {
+                    "openaiName": {
+                        "value": "[parameters('openaiName')]"
+                    },
+                    "embedId": {
+                        "value": "[parameters('openaiEmbedId')]"
                     }
                 }
             }
