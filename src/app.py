@@ -16,10 +16,10 @@ from llama_index.core.selectors import LLMSingleSelector
 from llama_index.core.retrievers import VectorIndexRetriever, SummaryIndexRetriever
 from llama_index.core.response_synthesizers import ResponseMode
 from llama_index.llms.azure_inference import AzureAICompletionsModel
-from llama_index.embeddings.azure_inference import AzureAIEmbeddingsModel
 from llama_index.core.query_engine.retriever_query_engine import RetrieverQueryEngine
 from llama_index.core.callbacks import CallbackManager
 from llama_index.core.tools import QueryEngineTool
+from llama_index.embeddings.azure_openai import AzureOpenAIEmbedding
 
 try:
     # rebuild storage context
@@ -45,7 +45,6 @@ async def start():
                 label="LLM model",
                 description="The LLM used for generation",
                 items={
-                    "Cohere Command R+": "COHERE_CMDR",
                     "Phi-3 Mini-128K-instruct": "PHI3_MINI",
                     "Mistral-Large": "MISTRAL",
                     "Mistral-Small": "MISTRAL_SMALL",
@@ -67,9 +66,12 @@ async def start():
         credential=os.getenv("AZURE_AI_PHI3_MINI_ENDPOINT_KEY"),
         temperature=0.1, max_tokens=1024, streaming=True
     )
-    Settings.embed_model = AzureAIEmbeddingsModel(
-        endpoint=os.getenv("AZURE_AI_OPENAI_ENDPOINT_URL"),
-        credential=os.getenv("AZURE_AI_OPENAI_ENDPOINT_KEY"),
+
+    Settings.embed_model = AzureOpenAIEmbedding(
+        model = "text-embedding-3-large",
+        api_key = os.getenv("AZURE_AI_OPENAI_ENDPOINT_KEY"),
+        api_version = "2023-05-15",
+        azure_endpoint = os.getenv("AZURE_AI_OPENAI_ENDPOINT_URL"),
     )
     Settings.callback_manager = CallbackManager([cl.LlamaIndexCallbackHandler()])
     Settings.context_window = 4096
