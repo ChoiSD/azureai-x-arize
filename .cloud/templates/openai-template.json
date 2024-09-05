@@ -1,0 +1,58 @@
+{
+    "$schema": "https://schema.management.azure.com/schemas/2019-04-01/deploymentTemplate.json#",
+    "contentVersion": "1.0.0.0",
+    "parameters": {
+        "openaiName": {
+            "defaultValue": "openai",
+            "type": "String"
+        },
+        "sku": {
+            "defaultValue": "S0",
+            "type": "String"
+        },
+        "location": {
+            "type": "String",
+            "defaultValue": "[resourceGroup().location]"
+        },
+        "embedId": {
+            "type": "String",
+            "defaultVaule": "azureml://registries/azure-openai/models/text-embedding-ada-002"
+        }
+    },
+    "variables": {
+        "modelName": "[substring(parameters('modelId'), add(lastIndexOf(parameters('modelId'), '/'),1))]"
+    },
+    "resources": [
+        {
+            "type": "Microsoft.CognitiveServices/accounts",
+            "apiVersion": "2023-05-01",
+            "name": "[parameters('openaiName')]",
+            "location": "[parameters('location')]",
+            "sku": {
+                "name": "[parameters('sku')]"
+            },
+            "kind": "OpenAI",
+            "properties": {
+                "publicNetworkAccess": "Enabled"
+            }
+        },
+        {
+            "type": "Microsoft.CognitiveServices/accounts/deployments",
+            "apiVersion": "2023-05-01",
+            "name": "[variables('modelName')]",
+            "sku": {
+                "name": "[parameters('sku')]"
+            },
+            "properties": {
+                "model": {
+                    "format": "OpenAI",
+                    "name": "[variables('modelName')]"
+                },
+                "raiPolicyName": "Microsoft.DefaultV2",
+            }
+            "dependsOn": [
+                "[resourceId('Microsoft.CognitiveServices/accounts', parameters('openaiName')]"
+            ]
+        }
+    ]
+}
