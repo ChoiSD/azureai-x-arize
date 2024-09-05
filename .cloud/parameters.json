@@ -10,6 +10,9 @@
         },
         "projectName": {
             "value": "intelligent-apps"
+        },
+        "openaiName": {
+            "value": "openai"
         }
     }
 }
