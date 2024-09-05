@@ -10,5 +10,7 @@ python-dotenv
 llama_index
 llama-index-llms-azure-inference
 llama-index-embeddings-azure-inference
+llama-index-embeddings-azure-openai
+llama-index-llms-azure-openai
 spacy
 chainlit
