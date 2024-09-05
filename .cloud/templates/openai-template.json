@@ -51,7 +51,7 @@
                 "raiPolicyName": "Microsoft.DefaultV2",
             }
             "dependsOn": [
-                "[resourceId('Microsoft.CognitiveServices/accounts', parameters('openaiName')]"
+                "[resourceId('Microsoft.CognitiveServices/accounts/', parameters('openaiName')]"
             ]
         }
     ]
