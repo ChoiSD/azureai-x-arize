@@ -17,8 +17,6 @@
         "modelIds": {
             "type": "array",
             "defaultValue": [
-                "azureml://registries/azureml-cohere/models/Cohere-command-r-plus",
-                "azureml://registries/azureml-cohere/models/Cohere-embed-v3-multilingual",
                 "azureml://registries/azureml-mistral/models/Mistral-large",
                 "azureml://registries/azureml-mistral/models/Mistral-small",
                 "azureml://registries/azureml/models/Phi-3-mini-4k-instruct"
