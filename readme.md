@@ -30,16 +30,14 @@ Once deployment is done, create an `.env` file with the endpoints URLs and keys 
 __.env__
 
 ```bash
-export AZURE_AI_COHERE_CMDR_ENDPOINT_URL="https://my_awesome_endpoint-serverless.eastus2.inference.ai.azure.com"
-export AZURE_AI_COHERE_CMDR_ENDPOINT_KEY="my_awesome_key"
 export AZURE_AI_MISTRAL_ENDPOINT_URL="https://my_awesome_endpoint-serverless.eastus2.inference.ai.azure.com"
 export AZURE_AI_MISTRAL_ENDPOINT_KEY="my_awesome_key" 
 export AZURE_AI_MISTRAL_SMALL_ENDPOINT_URL="https://my_awesome_endpoint-serverless.eastus2.inference.ai.azure.com"
 export AZURE_AI_MISTRAL_SMALL_ENDPOINT_KEY="my_awesome_key" 
 export AZURE_AI_PHI3_MINI_ENDPOINT_URL="https://my_awesome_endpoint-serverless.eastus2.inference.ai.azure.com"
 export AZURE_AI_PHI3_MINI_ENDPOINT_KEY="my_awesome_key" 
-export AZURE_AI_COHERE_EMBED_ENDPOINT_URL="https://my_awesome_endpoint-serverless.eastus2.inference.ai.azure.com"
-export AZURE_AI_COHERE_EMBED_ENDPOINT_KEY="my_awesome_key" 
+export AZURE_AI_OPENAI_ENDPOINT_URL="https://my_awesome_endpoint-serverless.eastus2.inference.ai.azure.com"
+export AZURE_AI_OPENAI_ENDPOINT_KEY="my_awesome_key" 
 ```
 
 ## Run
